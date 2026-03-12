@@ -3,7 +3,7 @@ project(MySDL3Project)
 
 # Find the SDL3 package. 'REQUIRED' makes the build fail if not found.
 find_package(SDL3 REQUIRED)
-
+find_package(SDL3_image REQUIRED)
 # Add your executable target
 add_executable(checkers main.cc)
 

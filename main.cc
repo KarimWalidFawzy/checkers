@@ -2,6 +2,7 @@
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_main.h>
 #include <SDL3/SDL_init.h>
+#include <SDL3_image/SDL_image.h>
 /* We will use this renderer to draw into this window every frame. */
 static SDL_Window *window = NULL;
 static SDL_Renderer *renderer = NULL;
@@ -12,7 +13,7 @@ static SDL_Renderer *renderer = NULL;
 
 SDL_AppResult SDL_AppInit(void **appstate, int argc, char *argv[])
 {
-    SDL_SetAppMetadata("Example Renderer Rectangles", "1.0", "com.example.renderer-rectangles");
+    //SDL_SetAppMetadata("Example Renderer Rectangles", "1.0", "com.example.renderer-rectangles");
 
     if (!SDL_Init(SDL_INIT_VIDEO)) {
         SDL_Log("Couldn't initialize SDL: %s", SDL_GetError());
@@ -22,7 +23,30 @@ SDL_AppResult SDL_AppInit(void **appstate, int argc, char *argv[])
     
     return SDL_APP_CONTINUE;  /* carry on with the program! */
 }
+SDL_AppResult SDL_AppEvent(void* appstate, const SDL_Event* event) 
+{
+    if (event->type == SDL_EVENT_QUIT) {
+        return SDL_APP_SUCCESS;  /* exit the program! */
+    }
+    return SDL_APP_CONTINUE;
+}
+SDL_AppResult SDL_AppIterate(void* appstate) 
+{
 
+    return SDL_APP_CONTINUE;
+}
+void SDL_AppQuit(void* appstate, SDL_AppResult result) 
+{
+    if (renderer) {
+        SDL_DestroyRenderer(renderer);
+        renderer = NULL;
+    }
+    if (window) {
+        SDL_DestroyWindow(window);
+        window = NULL;
+    }
+    SDL_Quit();
+}
 /**
  * Missing SDL 3 Callback Functions
 When you use the callback-based application model (#define SDL_MAIN_USE_CALLBACKS 1), your program must define the following functions, in addition to the SDL_AppInit function you've shown:
