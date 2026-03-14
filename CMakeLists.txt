@@ -12,5 +12,5 @@ add_executable(checkers main.cc)
 # (shared or static) and setting include paths.
 target_link_libraries(checkers PRIVATE 
     SDL3::SDL3 
-    SDL3::SDL3_image
+    SDL3_image::SDL3_image
 )
