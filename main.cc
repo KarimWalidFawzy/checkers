@@ -10,7 +10,8 @@ static SDL_Renderer *renderer = NULL;
 #define WINDOW_WIDTH 640
 #define WINDOW_HEIGHT 480
 #define WINDOW_TITLE "Checkers"
-
+SDL_Surface* checkerboardbmpimage;
+SDL_Texture* tex;
 SDL_AppResult SDL_AppInit(void **appstate, int argc, char *argv[])
 {
     //SDL_SetAppMetadata("Example Renderer Rectangles", "1.0", "com.example.renderer-rectangles");
@@ -21,21 +22,23 @@ SDL_AppResult SDL_AppInit(void **appstate, int argc, char *argv[])
     }
     window = SDL_CreateWindow(WINDOW_TITLE,WINDOW_WIDTH, WINDOW_HEIGHT, 0);
     renderer= SDL_CreateRenderer(window, NULL);
-    SDL_Surface* bmp = SDL_LoadBMP("./checkerboard.bmp");
-    SDL_Texture* tex = SDL_CreateTextureFromSurface(renderer, bmp);
+   
     
     return SDL_APP_CONTINUE;  /* carry on with the program! */
 }
 SDL_AppResult SDL_AppEvent(void* appstate,SDL_Event* event) 
 {
-    if (event->type == SDL_EVENT_QUIT) {
+    if (event->type == SDL_EVENT_QUIT) 
+    {
         return SDL_APP_SUCCESS;  /* exit the program! */
     }
     return SDL_APP_CONTINUE;
 }
 SDL_AppResult SDL_AppIterate(void* appstate) 
 {
-
+    
+    checkerboardbmpimage = SDL_LoadBMP("./checkerboard.bmp");
+    tex = SDL_CreateTextureFromSurface(renderer,checkerboardbmpimage);
     return SDL_APP_CONTINUE;
 }
 void SDL_AppQuit(void* appstate, SDL_AppResult result) 

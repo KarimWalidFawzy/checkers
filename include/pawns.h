@@ -18,7 +18,7 @@ class Pawn {
         : x(x), y(y), width(w), height(h), color(color), name(name) {}
 
     void draw(SDL_Renderer* renderer) const {
-        SDL_Rect rect = { x, y, width, height };
+        SDL_FRect rect = { x, y, width, height };
         SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
         SDL_RenderFillRect(renderer, &rect);
     }
