@@ -26,7 +26,7 @@ SDL_AppResult SDL_AppInit(void **appstate, int argc, char *argv[])
     
     return SDL_APP_CONTINUE;  /* carry on with the program! */
 }
-SDL_AppResult SDL_AppEvent(void* appstate, const SDL_Event* event) 
+SDL_AppResult SDL_AppEvent(void* appstate,SDL_Event* event) 
 {
     if (event->type == SDL_EVENT_QUIT) {
         return SDL_APP_SUCCESS;  /* exit the program! */
@@ -44,7 +44,8 @@ void SDL_AppQuit(void* appstate, SDL_AppResult result)
         SDL_DestroyRenderer(renderer);
         renderer = NULL;
     }
-    if (window) {
+    if (window) 
+    {
         SDL_DestroyWindow(window);
         window = NULL;
     }
