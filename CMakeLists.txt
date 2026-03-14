@@ -11,6 +11,6 @@ add_executable(checkers main.cc)
 # The `SDL3::SDL3` target automatically handles linking the correct library
 # (shared or static) and setting include paths.
 target_link_libraries(checkers PRIVATE 
-    SDL3::SDL3 
-    SDL3_image::SDL3_image
+    SDL3::SDL3-shared
+    SDL3_image::SDL3_image-shared
 )
