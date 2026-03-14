@@ -20,6 +20,9 @@ SDL_AppResult SDL_AppInit(void **appstate, int argc, char *argv[])
         return SDL_APP_FAILURE;
     }
     window = SDL_CreateWindow(WINDOW_TITLE,WINDOW_WIDTH, WINDOW_HEIGHT, 0);
+    renderer= SDL_CreateRenderer(window, NULL);
+    SDL_Surface* bmp = SDL_LoadBMP("./checkerboard.bmp");
+    SDL_Texture* tex = SDL_CreateTextureFromSurface(renderer, bmp);
     
     return SDL_APP_CONTINUE;  /* carry on with the program! */
 }
