@@ -38,7 +38,8 @@ SDL_AppResult SDL_AppInit(void **appstate, int argc, char *argv[])
         return SDL_APP_FAILURE;
     }
     /*
-    if (!IMG_in) {
+    if (!IMG_in) 
+    {
         SDL_Log("Couldn't initialize SDL_image: %s", IMG_GetError());
         return SDL_APP_FAILURE;
     }
@@ -257,6 +258,6 @@ void SDL_AppQuit(void* appstate, SDL_AppResult result)
         window = NULL;
     }
     
-    IMG_Quit();
+    //IMG_Quit();
     SDL_Quit();
 }
