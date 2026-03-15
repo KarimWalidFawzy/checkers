@@ -28,6 +28,11 @@ class Pawn {
         y += dy;
     }
 
+    int getX() const { return x; }
+    int getY() const { return y; }
+    int getWidth() const { return width; }
+    int getHeight() const { return height; }
+
     std::string getName() const { return name; }
 };
 #endif // PAWNS_H
