@@ -31,6 +31,34 @@ std::vector<Pawn> pawns;
 int selected_pawn = -1;
 bool is_white_turn = true;
 
+void initialize_pawns() {
+    pawns.clear();
+    SDL_Color black = {0, 0, 0, 255};
+    SDL_Color white = {255, 255, 255, 255};
+    
+    // Place black pawns (top 3 rows)
+    for (int row = 0; row < 3; row++) {
+        for (int col = 0; col < BOARD_SIZE; col++) {
+            if ((row + col) % 2 == 1) {
+                int x = col * SQUARE_SIZE;
+                int y = row * SQUARE_SIZE;
+                pawns.push_back(Pawn(x, y, SQUARE_SIZE, SQUARE_SIZE, black, "black_pawn"));
+            }
+        }
+    }
+    
+    // Place white pawns (bottom 3 rows)
+    for (int row = 5; row < BOARD_SIZE; row++) {
+        for (int col = 0; col < BOARD_SIZE; col++) {
+            if ((row + col) % 2 == 1) {
+                int x = col * SQUARE_SIZE;
+                int y = row * SQUARE_SIZE;
+                pawns.push_back(Pawn(x, y, SQUARE_SIZE, SQUARE_SIZE, white, "white_pawn"));
+            }
+        }
+    }
+}
+
 SDL_AppResult SDL_AppInit(void **appstate, int argc, char *argv[])
 {
     if (!SDL_Init(SDL_INIT_VIDEO)) {
@@ -90,34 +118,6 @@ SDL_AppResult SDL_AppInit(void **appstate, int argc, char *argv[])
     initialize_pawns();
     
     return SDL_APP_CONTINUE;
-}
-
-void initialize_pawns() {
-    pawns.clear();
-    SDL_Color black = {0, 0, 0, 255};
-    SDL_Color white = {255, 255, 255, 255};
-    
-    // Place black pawns (top 3 rows)
-    for (int row = 0; row < 3; row++) {
-        for (int col = 0; col < BOARD_SIZE; col++) {
-            if ((row + col) % 2 == 1) {
-                int x = col * SQUARE_SIZE;
-                int y = row * SQUARE_SIZE;
-                pawns.push_back(Pawn(x, y, SQUARE_SIZE, SQUARE_SIZE, black, "black_pawn"));
-            }
-        }
-    }
-    
-    // Place white pawns (bottom 3 rows)
-    for (int row = 5; row < BOARD_SIZE; row++) {
-        for (int col = 0; col < BOARD_SIZE; col++) {
-            if ((row + col) % 2 == 1) {
-                int x = col * SQUARE_SIZE;
-                int y = row * SQUARE_SIZE;
-                pawns.push_back(Pawn(x, y, SQUARE_SIZE, SQUARE_SIZE, white, "white_pawn"));
-            }
-        }
-    }
 }
 
 SDL_AppResult SDL_AppEvent(void* appstate, SDL_Event* event) 
