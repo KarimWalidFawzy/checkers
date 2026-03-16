@@ -14,7 +14,7 @@ class Pawn {
     std::string name;      // Name or identifier
 
     public:
-    Pawn(int x, int y, int w, int h, SDL_Color color, const std::string& name)
+    Pawn(float x, float y, float w, float h, SDL_Color color, const std::string& name)
         : x(x), y(y), width(w), height(h), color(color), name(name) {}
 
     void draw(SDL_Renderer* renderer) const {
@@ -23,15 +23,15 @@ class Pawn {
         SDL_RenderFillRect(renderer, &rect);
     }
 
-    void move(int dx, int dy) {
+    void move(float dx, float dy) {
         x += dx;
         y += dy;
     }
 
-    int getX() const { return x; }
-    int getY() const { return y; }
-    int getWidth() const { return width; }
-    int getHeight() const { return height; }
+    float getX() const { return x; }
+    float getY() const { return y; }
+    float getWidth() const { return width; }
+    float getHeight() const { return height; }
 
     std::string getName() const { return name; }
 };
